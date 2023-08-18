@@ -13,8 +13,8 @@
     "test": "vitest",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "format:check": "prettier . --check --ignore-path .gitignore",
-    "format:fix": "prettier . --check --ignore-path .gitignore"
+    "format:check": "prettier --check \"src/**/*.{ts,tsx}\"",
+    "format:fix": "prettier --write \"src/**/*.{ts,tsx}\""
   },
   "keywords": [
     "react",
