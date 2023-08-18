@@ -36,5 +36,7 @@ jobs:
           cache: 'npm'
       - run: npm ci
         name: Install modules from npm
+      - run: npm run format:check
+        name: Prettier Check
       - run: npm run build
         name: Build Code
