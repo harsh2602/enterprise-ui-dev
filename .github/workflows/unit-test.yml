@@ -1,4 +1,4 @@
-name: Build and Test
+name: Run Unit Tests
 
 on:
   push:
@@ -9,47 +9,43 @@ on:
 jobs:
   unit-test:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout respository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+        name: Checkout Repository 🫠
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'npm'
       - run: npm ci
-        name: Install modules from npm
       - run: npm test
-        name: Run the tests
 
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout respository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+        name: Checkout Repository 🫠
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'npm'
       - run: npm ci
-        name: Install modules from npm
-      - run: npm run format:check
-        name: Prettier Check
       - run: npm run build
-        name: Build Code
-
   coverage:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout and Setup Node
-        uses: ./.github/actions/checkout-and-setup
-      - run: npm test -- --coverage
+      - uses: actions/checkout@v3
+        name: Checkout Repository 🫠
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+      - run: npm ci
+      - run: npm test -- --coverage --run
       - uses: actions/upload-artifact@v3
-        name: Archive Coverage Report
+        name: Archive coverage report
         with:
           name: coverage-report
           path: coverage
