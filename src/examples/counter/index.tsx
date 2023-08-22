@@ -25,7 +25,7 @@ const Counter = ({ initialCount = 0 }: CounterProps) => {
           name="increment"
           onClick={() => setCount((n) => n + 1)}
         >
-          Increment
+          Increment Button
         </button>
       </div>
     </Frame>
